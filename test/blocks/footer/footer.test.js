@@ -16,3 +16,19 @@ const sleep = async(time = 1000) => new Promise((resolve) => {
         resolve(true);
     }, time);
 });
+
+const footerBlock = buildBlock('footer', [
+    ['Footer', '/test/blocks/footer/footer']
+]);
+document.querySelector('footer').append(footerBlock);
+decorateBlock(footerBlock);
+await loadBlock(footerBlock);
+await sleep();
+
+describe('Footer block', () => {
+    it('Displays footer content', async() => {
+        const a = document.querySelector('footer a');
+        expect(a).to.exist;
+        expect(a.href).to.equal('https://www.adobe.com/privacy.html');
+    });
+});
